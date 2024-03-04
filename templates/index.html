@@ -2,13 +2,92 @@
 <html>
 <head>
 	<title>ParisBot</title>
-	<link rel="stylesheet" href="/static/style.css"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 </head>
+<style>
+	body{
+		background: rgb(21, 21, 21);
+	}
+
+	#loginbox{
+		justify-content: center;
+		text-align: center;
+		margin-top: 300px;
+	}
+	
+	#logintext{
+		font-size: 27px;
+		font-family: "Roboto Mono", monospace;
+		font-optical-sizing: auto;
+		font-style: normal;
+		color: aliceblue;
+	}
+	
+	#loginbutton{
+		color: aliceblue;
+		font-size: 20px;
+		font-family: "Manrope", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+		border: 0px;
+		border-radius: 1px;
+		background-color: rgb(21, 21, 21);
+		transition: 100ms;
+	}
+
+	#loginbutton:hover {
+		background-color: rgb(2, 81, 253);
+		transform: translateY(-5px);
+	}
+
+	#loginbutton::after {
+		background-color: rgb(21, 21, 21);
+	}
+
+	#logobox {
+		justify-content: center;
+		text-align: center;
+	}
+
+	#logotext {
+		margin-top: -10px;
+		font-size: 80px;
+		font-family: "Noto Sans", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+		color: azure;
+	}
+
+	#descbox {
+		justify-content: center;
+		text-align: center;
+	}
+
+	#desctext{
+		color: azure;
+		font-size: 19px;
+		font-family: "Manrope", sans-serif;
+		font-optical-sizing: auto;
+		font-style: italic;
+	}
+
+</style>
 <body>
-<h1>Welcome to Coding Bot!</h1>
-
-Click here to login:
-<a href="/login"><button>Login with discord</button></a>
-
+	<div id="logobox">
+		<h1 id="logotext">PARIS BOT</h1>
+	</div>
+	<div id="descbox">
+		<h2 id="desctext"> "Melhor Bot Para Gerenciamento De Servers Focado Em Roleplay" </h2>
+	</div>
+	<div id="loginbox">
+		<h3 id="logintext"> Fazer Login: </h3>
+		<a href="/login"><button id="loginbutton">Logar Com Discord</button></a>
+	</div>
 </body>
 </html>

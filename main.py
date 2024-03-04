@@ -1,4 +1,4 @@
-from quart import Quart, render_template, session, redirect, url_for
+from quart import Quart, render_template, session, redirect, url_for, request
 from quart_discord import DiscordOAuth2Session
 import requests
 
@@ -18,13 +18,13 @@ async def home():
 async def login():
 	return await discord.create_session()
 
-@app.route("/send-message")
+@app.route("/send-message", methods =["GET", "POST"])
 async def sendMSG():
 	url = 'http://localhost:3000/send-message'
-	payload = {'message': 'Hello World!'}
-	x = requests.post(url, json=payload)
+	data = {"message": "Hello world!"}
+	x = requests.post(url, data=data)
 	print(x.text)
-	return "YOU KNOW IS NO THE SAME AT IS WAS"
+	return "Send Message"
 
 
 @app.route("/callback")
