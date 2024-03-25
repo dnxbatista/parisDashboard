@@ -1,93 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt" data-bs-theme="dark">
 <head>
-	<title>ParisBot</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<title>Paris Bot</title>
 </head>
-<style>
-	body{
-		background: rgb(21, 21, 21);
-	}
-
-	#loginbox{
-		justify-content: center;
-		text-align: center;
-		margin-top: 300px;
-	}
-	
-	#logintext{
-		font-size: 27px;
-		font-family: "Roboto Mono", monospace;
-		font-optical-sizing: auto;
-		font-style: normal;
-		color: aliceblue;
-	}
-	
-	#loginbutton{
-		color: aliceblue;
-		font-size: 20px;
-		font-family: "Manrope", sans-serif;
-		font-optical-sizing: auto;
-		font-style: normal;
-		border: 0px;
-		border-radius: 1px;
-		background-color: rgb(21, 21, 21);
-		transition: 100ms;
-	}
-
-	#loginbutton:hover {
-		background-color: rgb(2, 81, 253);
-		transform: translateY(-5px);
-	}
-
-	#loginbutton::after {
-		background-color: rgb(21, 21, 21);
-	}
-
-	#logobox {
-		justify-content: center;
-		text-align: center;
-	}
-
-	#logotext {
-		margin-top: -10px;
-		font-size: 80px;
-		font-family: "Noto Sans", sans-serif;
-		font-optical-sizing: auto;
-		font-style: normal;
-		color: azure;
-	}
-
-	#descbox {
-		justify-content: center;
-		text-align: center;
-	}
-
-	#desctext{
-		color: azure;
-		font-size: 19px;
-		font-family: "Manrope", sans-serif;
-		font-optical-sizing: auto;
-		font-style: italic;
-	}
-
-</style>
 <body>
-	<div id="logobox">
-		<h1 id="logotext">PARIS BOT</h1>
+	<div>
+		<!-- NavBar -->
+		<nav class="navbar bg-dark-subtle">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img alt="parisLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1ib2x0Ij48cGF0aCBkPSJNMjEgMTZWOGEyIDIgMCAwIDAtMS0xLjczbC03LTRhMiAyIDAgMCAwLTIgMGwtNyA0QTIgMiAwIDAgMCAzIDh2OGEyIDIgMCAwIDAgMSAxLjczbDcgNGEyIDIgMCAwIDAgMiAwbDctNEEyIDIgMCAwIDAgMjEgMTZ6Ii8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNCIvPjwvc3ZnPg==">
+					Paris Dashboard
+				</a>
+			</div>
+		</nav>
+
+		<div class="container-fluid text-center" style="margin-top: 350px;">
+			<a href="{{discord_url}}" class="btn btn-outline-primary">Logar Com Discord</a>
+		</div>
 	</div>
-	<div id="descbox">
-		<h2 id="desctext"> "Melhor Bot Para Gerenciamento De Servers Focado Em Roleplay" </h2>
-	</div>
-	<div id="loginbox">
-		<h3 id="logintext"> Fazer Login: </h3>
-		<a href="/login"><button id="loginbutton">Logar Com Discord</button></a>
-	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
