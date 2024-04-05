@@ -1,8 +1,10 @@
 """
 Compare User And Bot
+! Made To Paris Bot Dashboard !
+! Right's To Paris Bot !
 """
 
-from oauth import OAuth
+from utils.oauth import OAuth
 import requests
 import json
 
@@ -77,12 +79,16 @@ class Discord_User:
         return json_data
 
 class Discord_Bot:
+    """
+    Get Bot Informations...
+    ! Bot Needs To Be Online !
+    """
     @staticmethod
     def get_bot_guilds():
         """
         Return's all guilds the bot is in
         """
-        bot_guilds = requests.post('http://localhost:3000/get-guilds/')
+        bot_guilds = requests.post('http://localhost:3000/api/bot/get-guilds')
         json_data = json.loads(bot_guilds.text)
         return json_data
     

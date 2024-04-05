@@ -1,13 +1,18 @@
 from flask import Flask, render_template, request, session, redirect, jsonify
-from oauth import OAuth
+from utils.oauth import OAuth
 from utils.easyFunctions.CUAB import Discord_User, Discord_Bot, BotAndUser
+from dotenv import load_dotenv
 import json
 import requests
+import os
+
+#Dotenv
+load_dotenv()
+SECRET_KEY = os.getenv('FLASK_SECRETKEY')
 
 #Flask Config
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "Jn2n43JSnu43NJsad87928NJh23uih3Çç@fesç"
-
+app.config["SECRET_KEY"] = SECRET_KEY
 
 #Home Page
 @app.route('/')
@@ -20,7 +25,7 @@ def login():
     #Get Code And Token From OAuth
     code = request.args.get("code")
     acessToken = OAuth.get_access_token(code)
-    session["token"] = acessToken  
+    session["token"] = acessToken  #Save the token in the cookies
 
     #CUAB Config
     Discord_User.acessToken = acessToken
@@ -28,6 +33,8 @@ def login():
     #User Vars
     user_avatar_url = Discord_User.get_avatar()
     username = Discord_User.get_username()
+    user_id = Discord_User.get_id()
+    session["user_id"] = user_id
 
     guilds = BotAndUser.get_guilds()
     data = json.loads(guilds)
@@ -39,10 +46,14 @@ def login():
 def serverConfig():
 
     #check if user has a token in the cookies
-    if not session.get("token"):
+    if not session.get("token") or not session.get("user_id") :
         return redirect("/")
+    
+    #User
+    user_avatar_url = Discord_User.get_avatar()
+    username = Discord_User.get_username()
 
-    return render_template('serverConfig.html')
+    return render_template('serverConfig.html', user_avatar_url=user_avatar_url, username=username)
 
 #Just A Test
 @app.route('/sendMSG', methods= ["GET", "POST"])
@@ -68,4 +79,4 @@ def sendMSG():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
