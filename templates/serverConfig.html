@@ -10,7 +10,7 @@
     <div>
         <!-- NavBar -->
         <nav class="navbar bg-dark-subtle">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand">
                     <img src="{{user_avatar_url}}" alt="user_icon" width="40" height="40"  style="border-radius: 30px;" class="d-inline-block align-text-top">
                     {{username}}
@@ -18,29 +18,34 @@
             </div>
         </nav>
 
+        <!-- Main -->
         <div class="container-fluid">
-            <form class="row g-3" action="{{url_for('sendMSG')}}" method="post">
+            <form class="row g-3" action="{{url_for('set_command')}}"  method="post">
 
                 <div class="col-auto">
-                    <input class="form-control" name="text" type="text" placeholder="Nome Do Botao" aria-label="default input example">
+                    <input class="form-control" name="button_name" type="text" placeholder="Nome Do Botao">
                 </div>
 
                 <div class="col-auto">
-                    <select class="form-select">
-                        <option selected> Cargos </option>
-                        <option value="1">Cargo 1</option>
-                        <option value="1">Cargo 2</option>
-                        <option value="1">Cargo 3</option>
+                    <select class="form-select" name="role_id">
+                        <option selected value="0"> Cargos </option>
+                        {% for role in guild_roles %}
+                        <option value="{{role.id}}">{{role.name}}</option>
+                        {% endfor %}
                     </select>
                 </div>
 
                 <div class="col-auto">
-                    <select class="form-select">
-                        <option selected> Canal </option>
-                        <option value="1">Canal 1</option>
-                        <option value="1">Canal 2</option>
-                        <option value="1">Canal 3</option>
+                    <select class="form-select" name="channel_id">
+                        <option selected value="0"> Canal </option>
+                        {% for channel in guild_channels %}
+                        <option value="{{channel.id}}">{{channel.name}}</option>
+                        {% endfor %}
                     </select>
+                </div>
+
+                <div class="col-auto">
+                    <input class="form-control" name="prefix_name" type="text" placeholder="Prefixo">
                 </div>
                 
                 <div class="col-auto">

@@ -1,11 +1,11 @@
 import requests
 
 class OAuth:
-    client_id = "1170221058314473543"
-    client_secret = "Y-1vMj5tLtGPgIWnJBg6vARe7pthkKhC"
+    client_id = "1225914285478379540"
+    client_secret = "4k_nGmv5MDTV3BkTDvA8kP9PZ9aTYQQj"
     redirect_uri = "http://127.0.0.1:5000/servers"
     scope = "identify%20guilds%20email%"
-    discord_login_url = "https://discord.com/oauth2/authorize?client_id=1170221058314473543&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1%3A5000%2Fservers&scope=identify+email+guilds"
+    discord_login_url = "https://discord.com/oauth2/authorize?client_id=1225914285478379540&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1%3A5000%2Fservers&scope=identify+guilds+email"
     discord_token_url = "https://discord.com/api/oauth2/token"
     discord_api_url = "https://discord.com/api"
 

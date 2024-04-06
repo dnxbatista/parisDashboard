@@ -7,10 +7,10 @@
     <title>Servers</title>
 </head>
 <body>
-    <div>
+    <div class="">
         <!-- NavBar -->
         <nav class="navbar bg-dark-subtle">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand">
                     <img src="{{user_avatar_url}}" alt="user_icon" width="40" height="40"  style="border-radius: 30px;" class="d-inline-block align-text-top">
                     {{username}}
@@ -22,20 +22,29 @@
         <div class="container-fluid text-center">
             <div class="row">
               {% for guild in guilds %} 
-                <div class="col-xs-12" style="padding-top: 15px;">
+                <div class="col" style="padding-top: 15px;" id="{{guild.id}}">
                     <div class="card bg-dark-subtle text-light" style="width: 23rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{guild.name}}</h5>
                             <p class="card-text">ID: {{guild.id}}</p>
                             <p class="card-text">Membros: {{guild.membersCount}}</p>
-                            <a href="/serverconfig" class="btn btn-outline-primary">Configurar</a>
+                            <a href="/servers/painel/{{guild.id}}" class="btn btn-outline-primary">Configurar</a>
                             <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteServerModal">Deletar</a>
                         </div>
                     </div>
                 </div>   
-                {% endfor %}   
-            </div>
-               
+                {% endfor %}
+                
+                <!-- Add Server Option -->
+                <div class="col" style="padding-top: 15px;">
+                  <div class="card bg-dark-subtle text-light" style="width: 23rem;">
+                      <div class="card-body">
+                          <h5 class="card-title">Adicionar Servidor</h5>
+                          <a href="https://discord.com/oauth2/authorize?client_id=1225914285478379540&permissions=8&scope=bot" class="btn btn-outline-primary">Adicionar</a>
+                      </div>
+                  </div>  
+                </div>   
+            </div>      
         </div>
 
         <!-- First Warning Delete Server Modal -->

@@ -132,3 +132,51 @@ class BotAndUser:
         """   
         return BotAndUser.get_items_by_id()
     
+class Discord_Guild:
+    """
+    Get Guild Informations... [ Need A Guild ID ]
+    """
+    guild_id = None
+
+    @staticmethod
+    def get_roles():
+        """
+        Get All Roles Of A Guild
+        """
+
+        url = "http://localhost:3000/api/guild/get-roles"
+        data = {
+            'guild_id': Discord_Guild.guild_id
+        }
+        res = requests.post(url, data)
+        guild_roles = json.loads(res.text)
+        if res.status_code == 200:
+            return guild_roles['guild_roles']
+        else:
+            return 0
+        
+    def get_channels():
+        """
+        Get All Channels Of A Guild
+        """
+
+        url = "http://localhost:3000/api/guild/get-channels"
+        data = {
+            'guild_id': Discord_Guild.guild_id
+        }
+        res = requests.post(url, data)
+        guild_channels = json.loads(res.text)
+        if res.status_code == 200:
+            return guild_channels['guild_channels']
+        else:
+            return 0
+        
+    def get_text_channels():
+        guild_channels = Discord_Guild.get_channels()
+        raw_text_channels = [channel for channel in guild_channels if channel.get('type') == 0]
+        text_channels = json.dumps(raw_text_channels)
+        data = json.loads(text_channels)
+        return data
+        
+        
+    
