@@ -26,7 +26,6 @@ def login():
     #Get Code And Token From OAuth
     code = request.args.get("code")
     acessToken = OAuth.get_access_token(code)
-    session["token"] = acessToken  #Save the token in the cookies
 
     #CUAB Config
     Discord_User.acessToken = acessToken
@@ -37,7 +36,20 @@ def login():
 
     #Get user ID and store in cookies
     user_id = Discord_User.get_id()
-    session["user_id"] = user_id
+
+    #Find User API Token
+    url = "http://localhost:3000/api/auth/login"
+    user_data = {
+        'user_id': user_id
+    }
+    res = requests.post(url, user_data)
+    if res.status_code != 200: return redirect(url_for('homepage'))
+    user_token = json.loads(res.text)
+
+    #Saves Data In Cookies
+    session["token"] = acessToken  #Discord Token
+    session['user_token'] = user_token['token'] #API Token
+    session["user_id"] = user_id # Discord UserID
 
     #Guilds
     guilds = BotAndUser.get_guilds()
@@ -48,10 +60,9 @@ def login():
 #Servers Configuration Page
 @app.route('/servers/painel/<server_id>')
 def serverConfig(server_id):
-
-    #check if user has a token in the cookies
-    if not session.get("token"):
-        return redirect("/")
+    #Validate User
+    if not session.get("token") or not session.get("user_token"):
+        return redirect(url_for('homepage'))
     
     #Save Server ID In Cookies
     session["server_id"] = server_id 
@@ -92,20 +103,23 @@ def addServer():
     #API Data
     url = "http://localhost:3000/api/commands/add-server"
     data = {
+        'user_id': session.get('user_id'),
+        'user_token': session.get('user_token'),
         'guild_name':  guild_name,
         'guild_id': guild_id,
         'buyer_user_id': buyer_user_id,
         'rent_expire_date': rent_expire_date
     }
-
     res = requests.post(url, data)
+    if res.status_code != 200:
+        return redirect(url_for('homepage'))
 
-    return url_for('adminRoom')
+    return redirect(url_for('adminRoom'))
 
 @app.route('/api/commands/set', methods=["POST"])
 def set_command():
-    if not session.get("token"):
-        return redirect("/")
+    if not session.get("token") or not session.get("user_token"):
+        return redirect(url_for('homepage'))
     
     #Get Vars From Form
     button_name = request.form['button_name']
@@ -120,6 +134,8 @@ def set_command():
     #API Data
     url = "http://localhost:3000/api/commands/set"
     data = {
+        'user_id': session.get('user_id'),
+        'user_token': session.get('user_token'),
         'button_name': button_name,
         'role_id': role_id,
         'channel_id': channel_id,
