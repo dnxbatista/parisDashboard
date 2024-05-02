@@ -132,6 +132,15 @@ class BotAndUser:
         """   
         return BotAndUser.get_items_by_id()
     
+    def get_guild_by_id(guild_id):
+        guilds = json.loads(BotAndUser.get_guilds())
+
+        for guild in guilds:
+            if guild['id'] == guild_id:
+                data = json.dumps(guild)
+                return json.loads(data)
+        return None
+    
 class Discord_Guild:
     """
     Get Guild Informations... [ Need A Guild ID ]
